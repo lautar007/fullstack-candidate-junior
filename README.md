@@ -26,6 +26,8 @@
 - Try to replicate the original designs as much as possible.
 - Functional components only please. 
 - Typescript use is OK but not required.
+- If you find this test, and want to apply for a role on CBH please send your solution to victor.castillo@clipboardhealth.com
+- If you are a Semisenior engineer or above, please send an email to victor.castillo@clipboardhealth.com and let's have a talk.
 
 ## Important
 

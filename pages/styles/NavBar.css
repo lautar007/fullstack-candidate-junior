@@ -1,0 +1,55 @@
+@font-face{
+    font-family: 'Baron';
+    src:url('./fonts/Baron\ Neue.otf')
+}
+
+#cont-navBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#cont-profile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-right: 2%;
+    width: 8cm;
+}
+#cont-profile p{
+    margin: 0;
+}
+#create-navBar{
+    background-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: rgb(42, 170, 255);
+    color:rgb(42, 170, 255);
+    height: 35px;
+    font-family: 'Baron';
+    font-size: 14px;
+    padding: 0px 20px;
+    cursor: pointer;
+}
+
+#titulo-navBar{
+    font-family: 'Baron';
+    font-size: 18px;
+    margin: 10px 3%;
+    color: rgb(42, 170, 255);
+}
+
+#cont-buttons-navBar{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: 10px;
+}
+#but-navBar{
+    font-family: 'Baron';
+    background-color: white;
+    border-style: none;
+    cursor: pointer;
+    font-size: 16px;
+}

@@ -1,3 +1,4 @@
+  
 import './styles/NavBar.css'
 
 function MyApp({ Component, pageProps }) {

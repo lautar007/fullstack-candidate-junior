@@ -2,25 +2,28 @@ import JobPage from "./components/JobPage";
 import NavBar from "./components/NavBar";
 import axios from "axios";
 
-const Index = ({empresa}) => (
+const Index = ({filters, jobs}) => (
   <div>
     <NavBar/>
     <JobPage
-    empresa = {empresa}
+    filters = {filters}
+    jobs = {jobs}
     />
-    <h1>
-      Hello, Clipboard health!
-    </h1>
   </div>
 )
 
 Index.getInitialProps = async() => {
-  const data = await axios({
+  const filters = await axios({
     method: "GET",
     url: 'http://localhost:3000/api/filters',
 })
 
-return {empresa: data.data}
+const jobs = await axios({
+  method: "GET",
+  url: 'http://localhost:3000/api/jobs',
+})
+
+return {filters: filters.data, jobs: jobs.data}
 }
 
 export default Index

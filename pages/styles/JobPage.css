@@ -1,0 +1,55 @@
+#cont-jobPage{
+    background-color: rgb(240, 240, 240);
+    margin: 20px 0px;
+    padding-bottom: 20px;
+}
+
+#searchBar{
+    display: flex;
+    justify-content: center;
+}
+#searchBar input{
+    margin: 20px 20px 20px 20px;
+    height: 40px;
+    width: 96%;
+    border-style: solid;
+    border-color: rgb(211, 211, 211);
+    
+}
+
+
+
+#cont-filt{
+    background-color: white;
+    margin-left: 26px;
+    margin-bottom: 20px;
+    width: 20%;
+    border-style: solid;
+    border-color: rgb(211, 211, 211);
+    border-width: thin;
+}
+#cont-filt h2{
+    padding: 0px 20px;
+}
+#list-filt{
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+    height: 20px;
+}
+#list-filt button{
+    height: fit-content;
+    max-width: 180px;
+    background-color: white;
+    border:none;
+    font-size: 16px;
+    cursor:pointer;
+    text-align: initial;
+}
+#list-filt p{
+ margin: 0px 5px;
+ color: rgb(163, 163, 163)
+}
+
+
+

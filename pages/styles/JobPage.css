@@ -39,6 +39,7 @@
     margin: 0px 8%;
     margin-bottom: 20px;
     width: 82%;
+    height: fit-content;
     border-style: solid;
     border-color: rgb(211, 211, 211);
     border-width: thin;
@@ -66,6 +67,12 @@
  color: rgb(163, 163, 163)
 }
 
+#sort-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 #job-postings{
     display: flex;
     flex-direction: row;
@@ -76,6 +83,37 @@
 }
 #job-postings h3{
     margin:10px
+}
+#job-sorts{
+    display: flex;
+    flex-direction: row;
+    margin: 0 2%;
+}
+#job-sorts button{
+    background-color: white;
+    height: 20px;
+    margin: 15px 5px;
+    cursor: pointer;
+    border: none;
+}
+#job-sorts p{
+    color: rgb(163, 163, 163)
+}
+
+#header-company{
+    display: flex;
+    flex-direction: row;
+    margin: 0px 3%;
+}
+#header-company h3{
+    background-color: rgb(194, 194, 194);
+    padding: 7px;
+    border-radius: 10px;
+    margin-right: 2%;
+    color: white;
+}
+#header-company h4{
+    margin-top: 27px;
 }
 
 

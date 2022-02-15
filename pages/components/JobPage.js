@@ -11,7 +11,9 @@ export default function JobPage ({filters, jobs}) {
     //in this input will appear the results of the SearchBar search.
     const [input, setInput] = useState([])
 
-    //the next function handle the searchBar. It filter jobs by title and company, then push the results on the 'input' array.
+    const [filt, setFilt] = useState([])
+
+    //the next function handle the searchBar. It filter jobs by title, keyword or company, then push the results on the 'input' array.
     function handleSearchBar(e){
         if(e.target.value.length > 2){
         let titleFilter = jobS.map(j => {
@@ -20,7 +22,6 @@ export default function JobPage ({filters, jobs}) {
         let companyFilter = jobS.map(j => {
             return j.items.filter((it)=> it.name.toUpperCase().includes(e.target.value.toUpperCase()))
         })
-        console.log(companyFilter)
         
         let resultSearch = [];
 
@@ -36,6 +37,41 @@ export default function JobPage ({filters, jobs}) {
         console.log(input)
     }
     else setInput('')
+    }
+
+    //The next function handle all the filters and show only the jobs that achieve the requirement.
+    function handleFilter(e){
+        let filterType
+        let resultFilter = []
+
+        if(e.target.name === 'type'){
+            filterType = jobS.map(j => {
+                return j.items.filter((it)=> it.job_type === e.target.value)
+            })
+        }
+        
+        if(e.target.name === 'depart'){
+            filterType = jobS.map(j => {
+                return j.items.filter((it)=> it.department.includes(e.target.value))
+            })
+        }
+
+        if(e.target.name === 'schedule'){
+            filterType = jobS.map(j => {
+                return j.items.filter((it)=> it.work_schedule === e.target.value)
+            })
+        }
+
+        if(e.target.name === 'exp'){
+            filterType = jobS.map(j => {
+                return j.items.filter((it)=> it.experience === e.target.value)
+            })
+        }
+
+        filterType.map((type)=>{type.map((it)=>{
+            resultFilter.push(it.job_title)})
+        });
+        setInput(resultFilter);
     }
     
     //this variable allows show only the first ten values of the departments list of filters.
@@ -58,7 +94,11 @@ export default function JobPage ({filters, jobs}) {
                             filters.job_type && filters.job_type.map((type) =>{
                                 return(
                                     <div id='list-filt' key={type.doc_count}>
-                                    <button>{type.key}</button>
+                                    <button
+                                    name="type"
+                                    value={type.key}
+                                    onClick = {(e)=> handleFilter(e)}
+                                    >{type.key}</button>
                                     <p>{type.doc_count}</p>
                                     </div>
                                 )
@@ -71,7 +111,11 @@ export default function JobPage ({filters, jobs}) {
                             tenDepart && tenDepart.map((depart) =>{
                                 return(
                                     <div id='list-filt' key={depart.doc_count}>
-                                    <button>{depart.key}</button>
+                                    <button
+                                    name="depart"
+                                    value={depart.key}
+                                    onClick = {(e)=> handleFilter(e)}
+                                    >{depart.key}</button>
                                     <p>{depart.doc_count}</p>
                                     </div>
                                 )
@@ -85,7 +129,11 @@ export default function JobPage ({filters, jobs}) {
                             filters.work_schedule && filters.work_schedule.map((schedule) =>{
                                 return(
                                     <div id='list-filt' key={schedule.doc_count}>
-                                    <button>{schedule.key}</button>
+                                    <button
+                                    name="schedule"
+                                    value={schedule.key}
+                                    onClick = {(e)=> handleFilter(e)}
+                                    >{schedule.key}</button>
                                     <p>{schedule.doc_count}</p>
                                     </div>
                                 )
@@ -98,7 +146,11 @@ export default function JobPage ({filters, jobs}) {
                             filters.experience && filters.experience.map((exp) =>{
                                 return(
                                     <div id='list-filt' key={exp.doc_count}>
-                                    <button>{exp.key}</button>
+                                    <button
+                                    name="exp"
+                                    value={exp.key}
+                                    onClick = {(e)=> handleFilter(e)}
+                                    >{exp.key}</button>
                                     <p>{exp.doc_count}</p>
                                     </div>
                                 )
@@ -107,22 +159,41 @@ export default function JobPage ({filters, jobs}) {
                     </div>
                 </div>
                 <div id='jobs'>
-                    <div id="job-postings">
-                        {
-                            input.length > 0  ?
-                            <h3>{input.length}</h3>
-                            :
-                            <h3>0</h3>
-                        }
-                        <p>job postings</p>
+                    <div id="sort-header">
+                        <div id="job-postings">
+                            {
+                                input.length > 0  ?
+                                <h3>{input.length}</h3>
+                                :
+                                <h3>7,753</h3>
+                            }
+                            <p>job postings</p>
+                        </div>
+                        <div id="job-sorts">
+                            <p>Sort by</p>
+                            <button>Location</button>
+                            <button>Rol</button>
+                            <button>Department</button>
+                            <button>Education</button>
+                            <button>Experience</button>
+                        </div>
                     </div>
                     {
-                     input && input.map((job)=>{
+                     input.length > 0 ? input.map((job)=>{
                          return(
                              <div id={Math.random()}>
                                  <CardJob
                                  title = {job}
                                  />
+                             </div>
+                         )
+                     })
+                     :
+                     jobS && jobS.map ((job)=>{
+                         return (
+                             <div id="header-company" key={job.name}>
+                                 <h3>{job.name.toUpperCase().slice(0, 2)}</h3>
+                                 <h4>{job.items.length} jobs for {job.name}</h4>
                              </div>
                          )
                      })

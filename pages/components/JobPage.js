@@ -4,37 +4,41 @@ import CardJob from "./CardJob";
 
 export default function JobPage ({filters, jobs}) {
 
-    console.log(filters)
-
+    //the 'jobS' constant contain an array with the 20 companies and their jobs.
     const jobS = jobs.jobs;
     console.log(jobS)
 
+    //in this input will appear the results of the SearchBar search.
     const [input, setInput] = useState([])
 
-    //console.log(jobS[0].items);
-    //jobS[0].items.map((it)=>{
-    //    const arr = Object.values(it);
-    //    console.log(arr)
-    //    console.log(arr.includes("Mammoth Hospital"))
-    //    return arr
-    //})
-
+    //the next function handle the searchBar. It filter jobs by title and company, then push the results on the 'input' array.
     function handleSearchBar(e){
         if(e.target.value.length > 2){
-        let searchFilter = jobS.map(j => {
+        let titleFilter = jobS.map(j => {
             return j.items.filter((it)=> it.job_title.toUpperCase().includes(e.target.value.toUpperCase()))
         })
-        console.log(searchFilter)
+        let companyFilter = jobS.map(j => {
+            return j.items.filter((it)=> it.name.toUpperCase().includes(e.target.value.toUpperCase()))
+        })
+        console.log(companyFilter)
+        
         let resultSearch = [];
-        searchFilter.map((job)=>{ job.map((it)=>{
+
+        titleFilter.map((job)=>{ job.map((it)=>{
             resultSearch.push(it.job_title)})
         })
+
+        companyFilter.map((com)=>{com.map((it)=>{
+            resultSearch.push(it.job_title)})
+        })
+
         setInput(resultSearch);
         console.log(input)
     }
     else setInput('')
     }
     
+    //this variable allows show only the first ten values of the departments list of filters.
     let tenDepart = filters.department.slice(0,10)
 
     return(
@@ -105,7 +109,7 @@ export default function JobPage ({filters, jobs}) {
                 <div id='jobs'>
                     <div id="job-postings">
                         {
-                            input.length > 0 ?
+                            input.length > 0  ?
                             <h3>{input.length}</h3>
                             :
                             <h3>0</h3>
@@ -115,7 +119,7 @@ export default function JobPage ({filters, jobs}) {
                     {
                      input && input.map((job)=>{
                          return(
-                             <div>
+                             <div id={Math.random()}>
                                  <CardJob
                                  title = {job}
                                  />

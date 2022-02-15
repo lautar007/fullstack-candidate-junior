@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from 'react';
+import CardJob from "./CardJob";
 
 export default function JobPage ({filters, jobs}) {
 
@@ -7,13 +8,8 @@ export default function JobPage ({filters, jobs}) {
 
     const jobS = jobs.jobs;
     console.log(jobS)
-    
-    let filteredJobs = []
 
-    const [input, setInput] = useState('')
-
-    if(input=== ''){setInput('hola')}
-    console.log(input);
+    const [input, setInput] = useState([])
 
     //console.log(jobS[0].items);
     //jobS[0].items.map((it)=>{
@@ -24,11 +20,19 @@ export default function JobPage ({filters, jobs}) {
     //})
 
     function handleSearchBar(e){
+        if(e.target.value.length > 2){
         let searchFilter = jobS.map(j => {
             return j.items.filter((it)=> it.job_title.toUpperCase().includes(e.target.value.toUpperCase()))
         })
-        filteredJobs = searchFilter
-        return filteredJobs
+        console.log(searchFilter)
+        let resultSearch = [];
+        searchFilter.map((job)=>{ job.map((it)=>{
+            resultSearch.push(it.job_title)})
+        })
+        setInput(resultSearch);
+        console.log(input)
+    }
+    else setInput('')
     }
     
     let tenDepart = filters.department.slice(0,10)
@@ -99,14 +103,25 @@ export default function JobPage ({filters, jobs}) {
                     </div>
                 </div>
                 <div id='jobs'>
+                    <div id="job-postings">
+                        {
+                            input.length > 0 ?
+                            <h3>{input.length}</h3>
+                            :
+                            <h3>0</h3>
+                        }
+                        <p>job postings</p>
+                    </div>
                     {
-                        filteredJobs && filteredJobs.map(j=>{
-                            j.map(it=>{
-                                return(
-                                    <h3>{it.job_title}</h3>
-                                )
-                            })
-                        })
+                     input && input.map((job)=>{
+                         return(
+                             <div>
+                                 <CardJob
+                                 title = {job}
+                                 />
+                             </div>
+                         )
+                     })
                     }
                 </div>
             </div>

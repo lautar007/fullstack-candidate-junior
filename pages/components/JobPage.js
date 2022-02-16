@@ -12,7 +12,7 @@ export default function JobPage ({filters, jobs}) {
     const [input, setInput] = useState([]);
     const [sort, setSort] = useState([]);
 
-    //the next function handle the searchBar. It filter jobs by title, keyword or company, then push the results on the 'input' array as an object with the necesary information.
+    //The next function handle the searchBar. It filter jobs by title, keyword or company, then push the results on the 'input' array as an object with the necesary information.
     function handleSearchBar(e){
         if(e.target.value.length > 1){
         let titleFilter = jobS.map(j => {
@@ -101,6 +101,7 @@ export default function JobPage ({filters, jobs}) {
         setInput(resultFilter);
     }
 
+    //The next function handle the order sorts. They works combined with each other and the filters. 
     function handleSorts (e){
         if(e.target.name === 'rol'){
             if(e.target.value === 'Dis'){
@@ -108,27 +109,13 @@ export default function JobPage ({filters, jobs}) {
             }
             if(e.target.value === 'Asc'){
                 input.sort(function(a,b){
-                        if (a.title > b.title) {
-                          return 1;
-                        }
-                        if (a.title < b.title) {
-                          return -1;
-                        }
-                        // a must be equal to b
-                        return 0;
+                    return a.title > b.title ? 1:-1
                 })
                 setSort([]);
             }
             if(e.target.value === 'Desc'){
                 input.sort(function(a,b){
-                    if (a.title > b.title) {
-                      return -1;
-                    }
-                    if (a.title < b.title) {
-                      return 1;
-                    }
-                    // a must be equal to b
-                    return 0;
+                    return a.title > b.title ? -1:1
             })
             setSort([]);
             }
@@ -139,28 +126,33 @@ export default function JobPage ({filters, jobs}) {
             }
             if(e.target.value === 'Asc'){
                 input.sort(function(a,b){
-                        if (a.state > b.state) {
-                          return 1;
-                        }
-                        if (a.state < b.state) {
-                          return -1;
-                        }
-                        // a must be equal to b
-                        return 0;
+                        return a.state > b.state? 1: -1
                 })
                 console.log(input);
                 setSort([]);
             }
             if(e.target.value === 'Desc'){
                 input.sort(function(a,b){
-                    if (a.state > b.state) {
-                      return -1;
-                    }
-                    if (a.state < b.state) {
-                      return 1;
-                    }
-                    // a must be equal to b
-                    return 0;
+              return a.state > b.state? -1 : 1
+            })
+            console.log(input);
+            setSort([]);
+            }
+        }
+        if(e.target.name === 'edu'){
+            if(e.target.value === 'Dis'){
+                setInput([]);
+            }
+            if(e.target.value === 'Asc'){
+                input.sort(function(a,b){
+                  return a.education[0] > b.education[0] ? 1: -1
+            })
+            console.log(input);
+            setSort([]);
+            }
+            if(e.target.value === 'Desc'){
+                input.sort(function(a,b){
+                  return a.education[0] > b.education[0] ? -1: 1
             })
             console.log(input);
             setSort([]);
@@ -172,31 +164,92 @@ export default function JobPage ({filters, jobs}) {
             }
             if(e.target.value === 'Asc'){
                 input.sort(function(a,b){
-                    if(a.experience === b.experience){
-                        return 0}
-                    if(a.experience === 'intership' && b.experience === 'junior'){
-                        return -1}
-                    if(a.experience === 'junior' && b.experience === 'intermediate'){
-                        return -1}
-                    if(a.experience === 'intermediate' && b.experience === 'senior'){
-                        return -1}
-                })
-                console.log(input);
-                setSort([]);
+                  let valorA;
+                  let valorB;
+                  if(a.experience === 'Internship'){
+                      valorA = 1
+                  }
+                  if(a.experience === 'Junior'){
+                    valorA = 2
+                  }
+                  if(a.experience === 'Intermediate'){
+                    valorA = 3
+                  }
+                  if(a.experience === 'Senior'){
+                    valorA = 4
+                  }
+
+                  if(b.experience === 'Internship'){
+                    valorB = 1
+                  }
+                  if(b.experience === 'Junior'){
+                    valorB = 2
+                  }
+                  if(b.experience === 'Intermediate'){
+                    valorB = 3
+                  }
+                  if(b.experience === 'Senior'){
+                    valorB = 4
+                  }
+
+                  return valorA > valorB ? 1: -1 
+            })
+            console.log(input);
+            setSort([]);
             }
             if(e.target.value === 'Desc'){
-                input.sort(function (a,b){
-                    if(a.experience === b.experience){
-                        return 0}
-                    if(a.experience === 'intership' && b.experience === 'junior'){
-                        return 1}
-                    if(a.experience === 'junior' && b.experience === 'intermediate'){
-                        return 1}
-                    if(a.experience === 'intermediate' && b.experience === 'senior'){
-                        return 1}
-                })
-                console.log(input);
-                setSort([]);
+                input.sort(function(a,b){
+                    let valorA;
+                    let valorB;
+                    if(a.experience === 'Internship'){
+                        valorA = 1
+                    }
+                    if(a.experience === 'Junior'){
+                      valorA = 2
+                    }
+                    if(a.experience === 'Intermediate'){
+                      valorA = 3
+                    }
+                    if(a.experience === 'Senior'){
+                      valorA = 4
+                    }
+  
+                    if(b.experience === 'Internship'){
+                      valorB = 1
+                    }
+                    if(b.experience === 'Junior'){
+                      valorB = 2
+                    }
+                    if(b.experience === 'Intermediate'){
+                      valorB = 3
+                    }
+                    if(b.experience === 'Senior'){
+                      valorB = 4
+                    }
+  
+                    return valorA > valorB ? -1: 1 
+              })
+              console.log(input);
+              setSort([]);
+            }
+        }
+        if(e.target.name === 'dep'){
+            if(e.target.value === 'Dis'){
+                setInput([]);
+            }
+            if(e.target.value === 'Asc'){
+                input.sort(function(a,b){
+                  return a.department[0] > b.department[0] ? 1: -1
+            })
+            console.log(input);
+            setSort([]);
+            }
+            if(e.target.value === 'Desc'){
+                input.sort(function(a,b){
+                  return a.department[0] > b.department[0] ? -1: 1
+            })
+            console.log(input);
+            setSort([]);
             }
         }
     }
@@ -365,5 +418,3 @@ export default function JobPage ({filters, jobs}) {
         </div>
     )
 }
-
-

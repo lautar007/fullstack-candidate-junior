@@ -1,0 +1,30 @@
+#cont-subjob{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98%;
+    padding: 0px 10px;
+}
+
+.btn-job-comp{
+    margin-top: 30px;
+    background-color: white;
+    border: none;
+    cursor:pointer;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.btn-job{
+    height: 20px;
+    background-color: white;
+    border: none;
+    cursor:pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#card-date{
+    position: relative;
+    width: 100px;
+}

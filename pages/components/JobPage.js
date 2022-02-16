@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from 'react';
 import CardJob from "./CardJob";
+import SubCardJob from "./SubCardJob";
+
 
 export default function JobPage ({filters, jobs}) {
 
@@ -9,6 +11,7 @@ export default function JobPage ({filters, jobs}) {
     console.log(jobS)
 
     //in this input will appear the results of the SearchBar search.
+    // in 'list' will appear the jobs by company.
     const [input, setInput] = useState([]);
     const [sort, setSort] = useState([]);
 
@@ -32,7 +35,14 @@ export default function JobPage ({filters, jobs}) {
                     state: it.state,
                     department: it.department,
                     education: it.required_credentials,
-                    experience: it.experience
+                    experience: it.experience,
+                    salary: it.salary_range,
+                    type: it.job_type,
+                    city: it.city,
+                    created: it.created,
+                    hours: it.hours[0],
+                    shift: it.work_schedule,
+                    summary: it.description
                 }
             )
         })
@@ -46,7 +56,14 @@ export default function JobPage ({filters, jobs}) {
                     state: it.state,
                     department: it.department,
                     education: it.required_credentials,
-                    experience: it.experience
+                    experience: it.experience,
+                    salary: it.salary_range,
+                    type: it.job_type,
+                    city: it.city,
+                    created: it.created,
+                    hours: it.hours[0],
+                    shift: it.work_schedule,
+                    summary: it.description
                 }
             );
         })
@@ -89,12 +106,19 @@ export default function JobPage ({filters, jobs}) {
 
         filterType.map((type)=>{type.map((it)=>{
             resultFilter.push({
-                title: it.job_title,
-                company: it.name,
-                state: it.state,
-                department: it.department,
-                education: it.required_credentials,
-                experience: it.experience
+                    title: it.job_title,
+                    company: it.name,
+                    state: it.state,
+                    department: it.department,
+                    education: it.required_credentials,
+                    experience: it.experience,
+                    salary: it.salary_range,
+                    type: it.job_type,
+                    city: it.city,
+                    created: it.created,
+                    hours: it.hours[0],
+                    shift: it.work_schedule,
+                    summary: it.description
             })
           })
         });
@@ -128,14 +152,12 @@ export default function JobPage ({filters, jobs}) {
                 input.sort(function(a,b){
                         return a.state > b.state? 1: -1
                 })
-                console.log(input);
                 setSort([]);
             }
             if(e.target.value === 'Desc'){
                 input.sort(function(a,b){
               return a.state > b.state? -1 : 1
             })
-            console.log(input);
             setSort([]);
             }
         }
@@ -147,14 +169,12 @@ export default function JobPage ({filters, jobs}) {
                 input.sort(function(a,b){
                   return a.education[0] > b.education[0] ? 1: -1
             })
-            console.log(input);
             setSort([]);
             }
             if(e.target.value === 'Desc'){
                 input.sort(function(a,b){
                   return a.education[0] > b.education[0] ? -1: 1
             })
-            console.log(input);
             setSort([]);
             }
         }
@@ -194,7 +214,6 @@ export default function JobPage ({filters, jobs}) {
 
                   return valorA > valorB ? 1: -1 
             })
-            console.log(input);
             setSort([]);
             }
             if(e.target.value === 'Desc'){
@@ -229,7 +248,6 @@ export default function JobPage ({filters, jobs}) {
   
                     return valorA > valorB ? -1: 1 
               })
-              console.log(input);
               setSort([]);
             }
         }
@@ -241,14 +259,12 @@ export default function JobPage ({filters, jobs}) {
                 input.sort(function(a,b){
                   return a.department[0] > b.department[0] ? 1: -1
             })
-            console.log(input);
             setSort([]);
             }
             if(e.target.value === 'Desc'){
                 input.sort(function(a,b){
                   return a.department[0] > b.department[0] ? -1: 1
             })
-            console.log(input);
             setSort([]);
             }
         }
@@ -396,9 +412,17 @@ export default function JobPage ({filters, jobs}) {
                     {
                      input.length > 0 ? input.map((job)=>{
                          return(
-                             <div id={Math.random()}>
-                                 <CardJob
+                             <div key={Math.random()}>
+                                 <SubCardJob
                                  title = {job.title}
+                                 type = {job.type}
+                                 salary = {job.salary}
+                                 city = {job.city}
+                                 created = {job.created.slice(0, 10)}
+                                 department ={job.department}
+                                 hours = {job.hours}
+                                 shift = {job.shift}
+                                 summary = {job.summary}
                                  />
                              </div>
                          )
@@ -406,9 +430,15 @@ export default function JobPage ({filters, jobs}) {
                      :
                      jobS && jobS.map ((job)=>{
                          return (
+                             <div>
                              <div id="header-company" key={job.name}>
                                  <h3>{job.name.toUpperCase().slice(0, 2)}</h3>
-                                 <h4>{job.items.length} jobs for {job.name}</h4>
+                                 <CardJob
+                                 company = {job.name}
+                                 itemsCount = {job.items.length}
+                                 jobs = {job.items}
+                                 />
+                             </div>
                              </div>
                          )
                      })

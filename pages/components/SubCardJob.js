@@ -1,0 +1,54 @@
+import React from "react";
+import { useState } from "react";
+
+export default function SubCardJob({title, type, salary, city, created, department, hours, shift, summary}){
+    const date1 = new Date().getTime();
+    const date2 = new Date(created).getTime();
+    const diff = date1 - date2;
+    const ago = Math.floor(diff/(1000*60*60*24*7));
+    
+    const[drop, setDrop] = useState ({
+        action: false, jobs:[]
+    })
+
+    function handleDetail (e){
+        setDrop({
+            action: !drop.action,
+        })
+        console.log(drop)
+    }
+
+    return(
+        <div>
+            <div id="cont-subjob">
+                <div>
+                    <hr/>
+                    <button className="btn-job" onClick={(e)=> handleDetail(e)}>{title}</button>
+                    <p>{type} | ${salary[0]} - ${salary[1]} an hour | {city}</p>
+                </div>
+                <div>
+                    <p id="card-date">{ago} weeks ago</p>
+                </div>
+            </div>
+                {
+                     drop.action === true ?
+                    <div>
+                        <div>
+                            <h4>Departments:</h4>
+                            <p>{department[0]}, {department[1]}, {department[2]}, {department[3]}, {department[4]}</p>
+                        </div>
+                        <div>
+                            <h4>Hours / shift:</h4>
+                            <p>{hours} / {shift} </p>
+                        </div>
+                        <div>
+                            <h4>Summary:</h4>
+                            <p>{summary}</p>
+                        </div>
+                    </div>
+                     :
+                     null
+                }
+        </div>
+    )
+}

@@ -9,34 +9,53 @@ export default function JobPage ({filters, jobs}) {
     console.log(jobS)
 
     //in this input will appear the results of the SearchBar search.
-    const [input, setInput] = useState([])
+    const [input, setInput] = useState([]);
+    const [sort, setSort] = useState([]);
 
-    const [filt, setFilt] = useState([])
-
-    //the next function handle the searchBar. It filter jobs by title, keyword or company, then push the results on the 'input' array.
+    //the next function handle the searchBar. It filter jobs by title, keyword or company, then push the results on the 'input' array as an object with the necesary information.
     function handleSearchBar(e){
-        if(e.target.value.length > 2){
+        if(e.target.value.length > 1){
         let titleFilter = jobS.map(j => {
             return j.items.filter((it)=> it.job_title.toUpperCase().includes(e.target.value.toUpperCase()))
         })
         let companyFilter = jobS.map(j => {
             return j.items.filter((it)=> it.name.toUpperCase().includes(e.target.value.toUpperCase()))
         })
-        
-        let resultSearch = [];
+
+        let resultInput = [];
 
         titleFilter.map((job)=>{ job.map((it)=>{
-            resultSearch.push(it.job_title)})
+            resultInput.push(
+                {
+                    title: it.job_title,
+                    company: it.name,
+                    state: it.state,
+                    department: it.department,
+                    education: it.required_credentials,
+                    experience: it.experience
+                }
+            )
+        })
         })
 
         companyFilter.map((com)=>{com.map((it)=>{
-            resultSearch.push(it.job_title)})
+            resultInput.push(
+                {
+                    title: it.job_title,
+                    company: it.name,
+                    state: it.state,
+                    department: it.department,
+                    education: it.required_credentials,
+                    experience: it.experience
+                }
+            );
+        })
         })
 
-        setInput(resultSearch);
-        console.log(input)
+        setInput(resultInput);
+        console.log(input);
     }
-    else setInput('')
+    else setInput([]);
     }
 
     //The next function handle all the filters and show only the jobs that achieve the requirement.
@@ -69,9 +88,117 @@ export default function JobPage ({filters, jobs}) {
         }
 
         filterType.map((type)=>{type.map((it)=>{
-            resultFilter.push(it.job_title)})
+            resultFilter.push({
+                title: it.job_title,
+                company: it.name,
+                state: it.state,
+                department: it.department,
+                education: it.required_credentials,
+                experience: it.experience
+            })
+          })
         });
         setInput(resultFilter);
+    }
+
+    function handleSorts (e){
+        if(e.target.name === 'rol'){
+            if(e.target.value === 'Dis'){
+                setInput([]);
+            }
+            if(e.target.value === 'Asc'){
+                input.sort(function(a,b){
+                        if (a.title > b.title) {
+                          return 1;
+                        }
+                        if (a.title < b.title) {
+                          return -1;
+                        }
+                        // a must be equal to b
+                        return 0;
+                })
+                setSort([]);
+            }
+            if(e.target.value === 'Desc'){
+                input.sort(function(a,b){
+                    if (a.title > b.title) {
+                      return -1;
+                    }
+                    if (a.title < b.title) {
+                      return 1;
+                    }
+                    // a must be equal to b
+                    return 0;
+            })
+            setSort([]);
+            }
+        }
+        if(e.target.name === 'loc'){
+            if(e.target.value === 'Dis'){
+                setInput([]);
+            }
+            if(e.target.value === 'Asc'){
+                input.sort(function(a,b){
+                        if (a.state > b.state) {
+                          return 1;
+                        }
+                        if (a.state < b.state) {
+                          return -1;
+                        }
+                        // a must be equal to b
+                        return 0;
+                })
+                console.log(input);
+                setSort([]);
+            }
+            if(e.target.value === 'Desc'){
+                input.sort(function(a,b){
+                    if (a.state > b.state) {
+                      return -1;
+                    }
+                    if (a.state < b.state) {
+                      return 1;
+                    }
+                    // a must be equal to b
+                    return 0;
+            })
+            console.log(input);
+            setSort([]);
+            }
+        }
+        if(e.target.name === 'exp'){
+            if(e.target.value === 'Dis'){
+                setInput([]);
+            }
+            if(e.target.value === 'Asc'){
+                input.sort(function(a,b){
+                    if(a.experience === b.experience){
+                        return 0}
+                    if(a.experience === 'intership' && b.experience === 'junior'){
+                        return -1}
+                    if(a.experience === 'junior' && b.experience === 'intermediate'){
+                        return -1}
+                    if(a.experience === 'intermediate' && b.experience === 'senior'){
+                        return -1}
+                })
+                console.log(input);
+                setSort([]);
+            }
+            if(e.target.value === 'Desc'){
+                input.sort(function (a,b){
+                    if(a.experience === b.experience){
+                        return 0}
+                    if(a.experience === 'intership' && b.experience === 'junior'){
+                        return 1}
+                    if(a.experience === 'junior' && b.experience === 'intermediate'){
+                        return 1}
+                    if(a.experience === 'intermediate' && b.experience === 'senior'){
+                        return 1}
+                })
+                console.log(input);
+                setSort([]);
+            }
+        }
     }
     
     //this variable allows show only the first ten values of the departments list of filters.
@@ -171,11 +298,46 @@ export default function JobPage ({filters, jobs}) {
                         </div>
                         <div id="job-sorts">
                             <p>Sort by</p>
-                            <button>Location</button>
-                            <button>Rol</button>
-                            <button>Department</button>
-                            <button>Education</button>
-                            <button>Experience</button>
+                            <div id="sort-label">
+                                <label>location</label>
+                                <select name="loc" onChange={(e)=> handleSorts(e)}>
+                                    <option>Dis</option>
+                                    <option>Asc</option>
+                                    <option>Desc</option>
+                                </select>
+                            </div>
+                            <div id="sort-label">
+                                <label>rol</label>
+                                <select name="rol" onChange={(e)=> handleSorts(e)}>
+                                    <option>Dis</option>
+                                    <option>Asc</option>
+                                    <option>Desc</option>
+                                </select>
+                            </div>
+                            <div id="sort-label">
+                                <label>department</label>
+                                <select name="dep" onChange={(e)=> handleSorts(e)}>
+                                    <option>Dis</option>
+                                    <option>Asc</option>
+                                    <option>Desc</option>
+                                </select>
+                            </div>
+                            <div id="sort-label">
+                                <label>education</label>
+                                <select name="edu" onChange={(e)=> handleSorts(e)}>
+                                    <option>Dis</option>
+                                    <option>Asc</option>
+                                    <option>Desc</option>
+                                </select>
+                            </div>
+                            <div id="sort-label">
+                                <label>experience</label>
+                                <select name="exp" onChange={(e)=> handleSorts(e)}>
+                                    <option>Dis</option>
+                                    <option>Asc</option>
+                                    <option>Desc</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     {
@@ -183,7 +345,7 @@ export default function JobPage ({filters, jobs}) {
                          return(
                              <div id={Math.random()}>
                                  <CardJob
-                                 title = {job}
+                                 title = {job.title}
                                  />
                              </div>
                          )

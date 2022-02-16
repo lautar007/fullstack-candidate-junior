@@ -89,15 +89,26 @@
     flex-direction: row;
     margin: 0 2%;
 }
-#job-sorts button{
+#job-sorts select{
     background-color: white;
     height: 20px;
-    margin: 15px 5px;
+    width: fit-content;
+    margin: 15px 0px;
     cursor: pointer;
-    border: none;
 }
 #job-sorts p{
-    color: rgb(163, 163, 163)
+    color: rgb(163, 163, 163);
+}
+#sort-label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    margin-left: 10px;
+    text-align: center;
+}
+#sort-label label{
+    margin-top: 16px
 }
 
 #header-company{

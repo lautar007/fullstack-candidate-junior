@@ -32,18 +32,24 @@ export default function SubCardJob({title, type, salary, city, created, departme
             </div>
                 {
                      drop.action === true ?
-                    <div>
-                        <div>
+                    <div id="cont-apart">
+                        <div id='cont-aparT'>
+                        <div id="apart">
                             <h4>Departments:</h4>
                             <p>{department[0]}, {department[1]}, {department[2]}, {department[3]}, {department[4]}</p>
                         </div>
-                        <div>
+                        <div id="apart">
                             <h4>Hours / shift:</h4>
                             <p>{hours} / {shift} </p>
                         </div>
-                        <div>
+                        <div id="apart">
                             <h4>Summary:</h4>
                             <p>{summary}</p>
+                        </div>
+                        </div>
+                        <div id="apart-btn">
+                            <button>Job details</button>
+                            <button>Save job</button>
                         </div>
                     </div>
                      :

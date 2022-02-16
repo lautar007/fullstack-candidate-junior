@@ -28,3 +28,48 @@
     position: relative;
     width: 100px;
 }
+ 
+#cont-apart{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#cont-aparT{
+    width: 78%;
+}
+
+#apart{
+    display: flex;
+    flex-direction: row;
+}
+#apart p{
+    width: 50%;
+    margin-left: 10%;
+}
+#apart h4{
+    width: 10%;
+}
+
+#apart-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+}
+#apart-btn button{
+    width: 50%;
+    height: 40px;
+    margin: 15px 0px;
+    background-color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    border-color: rgb(9, 163, 252);
+    color: rgb(7, 135, 209);
+    border-style: solid;
+    transition: 500ms;
+}
+#apart-btn button:hover{
+    background-color: rgb(9, 163, 252);
+    color: white;
+}

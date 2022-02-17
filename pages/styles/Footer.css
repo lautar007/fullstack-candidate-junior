@@ -14,3 +14,9 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+@media screen and (max-width: 950px) {
+    #cont-footer{
+        flex-direction: column;
+    }
+}

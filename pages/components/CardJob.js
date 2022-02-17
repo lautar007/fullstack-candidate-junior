@@ -19,7 +19,10 @@ return(
     <div>
         {
             company ?
+            <div id="header-company">
+            <h3>{company.toUpperCase().slice(0, 2)}</h3>
             <button className="btn-job-comp" onClick={(e)=> handleCompany(e)}>{itemsCount} jobs for {company}</button>
+            </div>
             :
             null
         }

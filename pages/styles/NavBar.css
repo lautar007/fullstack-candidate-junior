@@ -3,7 +3,6 @@
     src:url('./fonts/Baron\ Neue.otf')
 }
 
-
 #cont-navBar{
     display: flex;
     flex-direction: row;
@@ -62,3 +61,26 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+@media all and (max-width: 900px){
+    #cont-buttons-navBar{
+        display:none;
+    }
+    #create-navBar{
+        display: none;
+    }
+    #but-navBar{
+        display: none;
+    }
+    #titulo-navBar{
+        font-size: 40px;
+    }
+    #cont-profile{
+        width: fit-content;
+    }
+    #cont-profile h2{
+        width: 50px;
+        
+        padding-top: 10px;
+    }
+  }

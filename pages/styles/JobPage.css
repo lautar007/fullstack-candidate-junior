@@ -7,6 +7,26 @@
     src:url('./fonts/Baron\ Neue.otf')
 }
 
+@media screen and (max-width: 950px){
+    #filters{
+        display: none;
+    }
+    #jobs{
+        margin-left: 3%;
+        padding: 0px 8%;
+    }
+    #job-sorts p{
+        display: none;
+    }
+    #sort-label label{
+        display: none;
+    }
+    #sort-label select{
+        display: none;
+    }
+}
+
+
 #cont-jobPage{
     background-color: rgb(240, 240, 240);
     margin: 20px 0px;
@@ -150,23 +170,6 @@
     font-size: 18px;
 }
 
-#header-company{
-    display: flex;
-    flex-direction: row;
-    margin: 0px 3%;
-    background-color: white;
-}
-#header-company h3{
-    background-color: rgb(194, 194, 194);
-    padding: 7px;
-    border-radius: 10px;
-    margin-right: 2%;
-    height: 25px;
-    width: 25px;
-    font-family: 'Geosans';
-    color: white;
-    text-align: center;
-}
 
 .window{
     background-color: white;

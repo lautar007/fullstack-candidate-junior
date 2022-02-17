@@ -1,3 +1,43 @@
+@media  screen and (max-width: 950px) {
+#cont-apart{
+    flex-direction: column !important;
+}
+#apart{
+    flex-direction: column !important;
+    margin-left: 10px !important;
+}
+#apart p{
+    width: 100% !important;
+    margin: 0 !important;
+}
+#apart-btn{
+    flex-direction: row !important;
+    width: 100% !important;
+    justify-content: space-around !important;
+}
+#apart-btn button{
+    width: 27% !important;
+}
+}
+
+#header-company{
+    display: flex;
+    flex-direction: row;
+    margin: 0px 3%;
+    background-color: white
+}
+#header-company h3{
+    background-color: rgb(194, 194, 194);
+    padding: 7px;
+    border-radius: 10px;
+    margin-right: 2%;
+    height: 25px;
+    width: 25px;
+    font-family: 'Geosans';
+    color: white;
+    text-align: center;
+}
+
 #cont-subjob{
     display: flex;
     flex-direction: row;
@@ -7,13 +47,14 @@
 }
 
 .btn-job-comp{
-    margin-top: 30px;
+    margin-top: 0;
     background-color: white;
     border: none;
     cursor:pointer;
     font-size: 18px;
     font-family: 'Geosans';
     font-weight: bolder;
+    width: fit-content;
 }
 
 .btn-job{
@@ -31,12 +72,11 @@
 }
 
 #card-date{
-    position: relative;
     width: 100px;
     font-size: 18px;
     font-family: 'Geosans';
 }
- 
+
 #cont-apart{
     display: flex;
     flex-direction: row;
@@ -61,7 +101,7 @@
     color: rgb(138, 138, 138);
 }
 #apart h4{
-    width: 10%;
+
     font-family: 'Geosans';
     font-weight: bold;
     font-size: 18px;
@@ -75,7 +115,7 @@
 }
 #apart-btn button{
     width: 50%;
-    height: 40px;
+    height: fit-content;
     margin: 15px 0px;
     background-color: white;
     border-radius: 15px;

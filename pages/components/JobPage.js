@@ -441,8 +441,7 @@ export default function JobPage ({filters, jobs}) {
                      jobS && jobS.map ((job)=>{
                          return (
                              <div>
-                             <div id="header-company" key={job.name}>
-                                 <h3>{job.name.toUpperCase().slice(0, 2)}</h3>
+                             <div key={job.name}>
                                  <CardJob
                                  company = {job.name}
                                  itemsCount = {job.items.length}

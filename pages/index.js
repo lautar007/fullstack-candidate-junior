@@ -14,7 +14,7 @@ const Index = ({filters, jobs}) => (
   </div>
 )
 
-export const getStaticProps = async() => {
+Index.getInitialProps = async() => {
   const filters = await axios({
     method: "GET",
     url: 'http://localhost:3000/api/filters',
@@ -25,7 +25,7 @@ const jobs = await axios({
   url: 'http://localhost:3000/api/jobs',
 })
 
-return {props: {filters: filters.data, jobs: jobs.data}}
+return {filters: filters.data, jobs: jobs.data}
 }
 
 export default Index

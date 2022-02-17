@@ -12,7 +12,6 @@ export default function CardJob ({title, company, itemsCount, jobs }){
             action: !drop.action,
             jobs: jobs
         })
-        console.log(drop)
     }
 
 return(
@@ -31,7 +30,7 @@ return(
                 drop.action === true ?
                 drop.jobs.map(job=>{
                     return (
-                        <div>
+                        <div key={Math.random()}>
                             <SubCardJob
                             title = {job.job_title}
                             type = {job.job_type}

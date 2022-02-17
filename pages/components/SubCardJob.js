@@ -15,7 +15,6 @@ export default function SubCardJob({title, type, salary, city, created, departme
         setDrop({
             action: !drop.action,
         })
-        console.log(drop)
     }
 
     return(

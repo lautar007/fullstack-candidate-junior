@@ -8,7 +8,6 @@ export default function JobPage ({filters, jobs}) {
 
     //the 'jobS' constant contain an array with the 20 companies and their jobs.
     const jobS = jobs.jobs;
-    console.log(jobS)
 
     //in this input will appear the results of the SearchBar search.
     // in 'list' will appear the jobs by company.
@@ -70,7 +69,6 @@ export default function JobPage ({filters, jobs}) {
         })
 
         setInput(resultInput);
-        console.log(input);
     }
     else setInput([]);
     }
@@ -440,14 +438,12 @@ export default function JobPage ({filters, jobs}) {
                      :
                      jobS && jobS.map ((job)=>{
                          return (
-                             <div>
-                             <div key={job.name}>
+                             <div key={Math.random()}>
                                  <CardJob
                                  company = {job.name}
                                  itemsCount = {job.items.length}
                                  jobs = {job.items}
                                  />
-                             </div>
                              </div>
                          )
                      })
@@ -462,7 +458,7 @@ export default function JobPage ({filters, jobs}) {
                    {
                        filters.department && filters.department.map((depart)=>{
                            return(
-                            <div id='window-dep' key={depart.doc_count}>
+                            <div id='window-dep' key={Math.random()}>
                             <button
                             name="depart"
                             value={depart.key}

@@ -18,8 +18,16 @@
     margin-right: 2%;
     width: 8cm;
 }
-#cont-profile p{
+#cont-profile h2{
+    font-family: 'Geosans';
+    text-align: center;
+    padding-top: 5px;
+    background-color: rgb(42, 170, 255);
+    border-radius: 50px;
+    width: 15%;
+    height: 40px;
     margin: 0;
+    color:white
 }
 #create-navBar{
     background-color: white;

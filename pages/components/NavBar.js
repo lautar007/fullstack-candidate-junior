@@ -1,5 +1,6 @@
 import React from "react"
 
+
 export default function NavBar(){
 
     return(
@@ -14,7 +15,7 @@ export default function NavBar(){
             </div>
             <div id="cont-profile">
                 <button id="create-navBar">create job</button>
-                <p>Logo</p>
+                <h2>JO</h2>
                 <button id="but-navBar">logout</button>
             </div>
         </div>

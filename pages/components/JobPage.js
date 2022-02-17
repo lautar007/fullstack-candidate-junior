@@ -269,6 +269,16 @@ export default function JobPage ({filters, jobs}) {
             }
         }
     }
+
+    //This functions allows to open and close the window that show all the department filters.
+    function open(e){
+        e.preventDefault();
+        document.getElementById('window').style.display='flex';
+    }
+    function close(e){
+        e.preventDefault();
+        document.getElementById('window').style.display='none'; 
+    }
     
     //this variable allows show only the first ten values of the departments list of filters.
     let tenDepart = filters.department.slice(0,10)
@@ -317,7 +327,7 @@ export default function JobPage ({filters, jobs}) {
                                 )
                             })
                         }
-                        <button id = 'show-more'>Show more</button>
+                        <button onClick={(e)=> open(e)} id = 'show-more'>Show more</button>
                     </div>
                     <div id='cont-filt'>
                         <h2>work schedule</h2>
@@ -444,6 +454,29 @@ export default function JobPage ({filters, jobs}) {
                      })
                     }
                 </div>
+            </div>
+            <div className="window" id="window">
+                <div className="window-head">
+                    <h2 >Departments</h2>
+                    <hr/>
+                    <div className="window-list">
+                   {
+                       filters.department && filters.department.map((depart)=>{
+                           return(
+                            <div id='window-dep' key={depart.doc_count}>
+                            <button
+                            name="depart"
+                            value={depart.key}
+                            onClick = {(e)=> handleFilter(e)}
+                            >{depart.key}</button>
+                            <p>{depart.doc_count}</p>
+                            </div>
+                           )
+                       })
+                   }
+                   </div>
+                </div>
+                <button onClick={(e)=> close(e)}>X</button>
             </div>
         </div>
     )

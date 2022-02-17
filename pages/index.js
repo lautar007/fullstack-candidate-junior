@@ -19,7 +19,9 @@ Index.getInitialProps = async() => {
     method: "GET",
     url: 'http://localhost:3000/api/filters',
 })
+}
 
+Index.getInitialProps = async()=>{
 const jobs = await axios({
   method: "GET",
   url: 'http://localhost:3000/api/jobs',

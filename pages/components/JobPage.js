@@ -317,7 +317,7 @@ export default function JobPage ({filters, jobs}) {
                                 )
                             })
                         }
-                        <button>Show more</button>
+                        <button id = 'show-more'>Show more</button>
                     </div>
                     <div id='cont-filt'>
                         <h2>work schedule</h2>

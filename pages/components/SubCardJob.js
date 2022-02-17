@@ -24,7 +24,7 @@ export default function SubCardJob({title, type, salary, city, created, departme
                 <div>
                     <hr/>
                     <button className="btn-job" onClick={(e)=> handleDetail(e)}>{title}</button>
-                    <p>{type} | ${salary[0]} - ${salary[1]} an hour | {city}</p>
+                    <p className="btn-job-p">{type} | ${salary[0]} - ${salary[1]} an hour | {city}</p>
                 </div>
                 <div>
                     <p id="card-date">{ago} weeks ago</p>

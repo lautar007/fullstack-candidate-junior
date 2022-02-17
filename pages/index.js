@@ -1,6 +1,7 @@
 import JobPage from "./components/JobPage";
 import NavBar from "./components/NavBar";
 import axios from "axios";
+import Footer from "./components/Footer";
 
 const Index = ({filters, jobs}) => (
   <div>
@@ -9,6 +10,7 @@ const Index = ({filters, jobs}) => (
     filters = {filters}
     jobs = {jobs}
     />
+    <Footer/>
   </div>
 )
 

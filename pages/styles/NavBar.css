@@ -3,6 +3,7 @@
     src:url('./fonts/Baron\ Neue.otf')
 }
 
+
 #cont-navBar{
     display: flex;
     flex-direction: row;

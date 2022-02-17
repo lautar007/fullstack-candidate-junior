@@ -11,7 +11,8 @@
     background-color: white;
     border: none;
     cursor:pointer;
-    font-size: 14px;
+    font-size: 18px;
+    font-family: 'Geosans';
     font-weight: bolder;
 }
 
@@ -20,13 +21,20 @@
     background-color: white;
     border: none;
     cursor:pointer;
-    font-size: 14px;
+    font-family: 'Geosans';
+    font-size: 17px;
     font-weight: bold;
+}
+.btn-job-p{
+    font-family: 'Geosans';
+    font-size: 17px;
 }
 
 #card-date{
     position: relative;
     width: 100px;
+    font-size: 18px;
+    font-family: 'Geosans';
 }
  
 #cont-apart{
@@ -46,9 +54,17 @@
 #apart p{
     width: 50%;
     margin-left: 10%;
+    padding-top: 8px;
+    font-family: 'Geosans';
+    font-size: 17px;
+    font-weight: bold;
+    color: rgb(138, 138, 138);
 }
 #apart h4{
     width: 10%;
+    font-family: 'Geosans';
+    font-weight: bold;
+    font-size: 18px;
 }
 
 #apart-btn{
@@ -65,8 +81,11 @@
     border-radius: 15px;
     cursor: pointer;
     border-color: rgb(9, 163, 252);
-    color: rgb(7, 135, 209);
+    color: rgb(52, 175, 247);
     border-style: solid;
+    font-family: 'Geosans';
+    font-size: 20px;
+    font-weight: bold;
     transition: 500ms;
 }
 #apart-btn button:hover{

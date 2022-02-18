@@ -17,12 +17,12 @@ const Index = ({filters, jobs}) => (
 Index.getInitialProps = async() => {
   const filters = await axios({
     method: "GET",
-    url: 'http://localhost:3000/api/filters',
+    url: 'http://fullstack-candidate-junior.vercel.app/api/filters',
 })
 
 const jobs = await axios({
   method: "GET",
-  url: 'http://localhost:3000/api/jobs',
+  url: 'http://fullstack-candidate-junior.vercel.app/api/jobs',
 })
 
 return {filters: filters.data, jobs: jobs.data}
